@@ -8,7 +8,88 @@ E.	Si el importe final con descuento suma más de $120  se debe sumar un 10% de 
  ”Usted pago X de IIBB.”, siendo X el impuesto que se pagó. 
 
  */
-function CalcularPrecio () 
-{
- 	
+
+/*NO LOGRO QUE EL PRECIO DE LA CAJA ME LO MUESTRE CON 2 DIGITOS. EJ: PRECIO DE 12-13 UNIDADES*/
+
+function CalcularPrecio() {
+    let vCant;
+    let vMarca;
+    let vPrecioFinal;
+    let vPrecio;
+    let vDescuento;
+    let vPFconIIBB;
+    let vIIBB;
+    vPrecio = 35;
+    vCant = parseInt(document.getElementById("txtIdCantidad").value);
+    vMarca = document.getElementById("Marca").value;
+
+
+
+    switch (vCant) {
+        case 1:
+        case 2:
+            vPrecioFinal = vCant * vPrecio;
+            document.getElementById("txtIdprecioDescuento").value = vPrecioFinal;
+            break;
+        case 3:
+            if (vMarca == "ArgentinaLuz") {
+                vDescuento = 0.85;
+                vPrecioFinal = (vCant * vPrecio) * vDescuento;
+                document.getElementById("txtIdprecioDescuento").value = vPrecioFinal;
+            }
+            else if (vMarca == "FelipeLamparas") {
+                vDescuento = 0.9;
+                vPrecioFinal = (vCant * vPrecio) * vDescuento;
+                document.getElementById("txtIdprecioDescuento").value = vPrecioFinal;
+            }
+            else if (vMarca == "JeLuz" || vMarca == "HazIluminacion" || vMarca == "Osram") {
+                vDescuento = 0.95;
+                vPrecioFinal = (vCant * vPrecio) * vDescuento;
+                document.getElementById("txtIdprecioDescuento").value = vPrecioFinal;
+            }
+            break;
+        case 4:
+            if (vMarca == "ArgentinaLuz" || vMarca == "FelipeLamparas") {
+                vDescuento = 0.75;
+                vPrecioFinal = (vCant * vPrecio) * vDescuento;
+                document.getElementById("txtIdprecioDescuento").value = vPrecioFinal;
+            }
+            else if (vMarca == "JeLuz" || vMarca == "HazIluminacion" || vMarca == "Osram") {
+                vDescuento = 0.8;
+                vPrecioFinal = (vCant * vPrecio) * vDescuento;
+                document.getElementById("txtIdprecioDescuento").value = vPrecioFinal;
+            }
+            break;
+        case 5:
+            if (vMarca == "ArgentinaLuz") {
+                vDescuento = 0.6;
+                vPrecioFinal = (vCant * vPrecio) * vDescuento;
+                document.getElementById("txtIdprecioDescuento").value = vPrecioFinal;
+            }
+            else if (vMarca == "FelipeLamparas" || vMarca == "JeLuz" || vMarca == "HazIluminacion" || vMarca == "Osram") {
+                vDescuento = 0.7;
+                vPrecioFinal = (vCant * vPrecio) * vDescuento;
+                document.getElementById("txtIdprecioDescuento").value = vPrecioFinal;
+            }
+            break;
+        default:
+            if (vCant >= 6) {
+                vDescuento = 0.5;
+                vPrecioFinal = (vCant * vPrecio) * vDescuento.toFixed(2);
+                document.getElementById("txtIdprecioDescuento").value = vPrecioFinal;
+            }
+       
+           
+    }
+
+    if (vPrecioFinal > 120) {
+        vPFconIIBB = vPrecioFinal * 1.1;
+        vIIBB = vPrecioFinal * 0.1;
+        document.getElementById("txtIdprecioDescuento").value = vPFconIIBB;
+
+        alert("IIBB Usted pagó " + vPFconIIBB.toFixed(2) + ", siendo " + vIIBB.toFixed(2) + " el impuesto que se pagó");
+    }
 }
+
+
+
